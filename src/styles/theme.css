@@ -1,0 +1,32 @@
+:root {
+  /* Primary (softer professional blue) */
+  --primary: #1d4ed8;
+  --primary-dark: #1e3a8a;
+
+  /* Background */
+  --bg: #eef2f7;   /* slightly grey-blue background */
+  --card: #ffffff;
+
+  /* Sidebar */
+  --sidebar-bg: #0b1220;
+  --sidebar-hover: #1f2a44;
+  --sidebar-text: #cbd5e1;
+
+  /* Text */
+  --text: #0f172a;
+  --text-light: #64748b;
+
+  /* Status */
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  --radius: 10px;
+  --shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}

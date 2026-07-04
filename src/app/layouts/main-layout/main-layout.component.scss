@@ -1,0 +1,128 @@
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+  width: 240px;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  position: relative;
+}
+
+/* Sidebar content wrapper */
+.sidebar-content {
+  padding: 12px;
+  padding-top: 55px; /* 👈 IMPORTANT FIX */
+  display: flex;
+  flex-direction: column;
+}
+/* Collapsed state */
+.sidebar.collapsed {
+  width: 70px;
+}
+
+/* =========================
+   TOGGLE BUTTON
+========================= */
+.toggle-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: white;
+  font-size: 18px;
+
+  border-radius: 6px;
+  cursor: pointer;
+
+  z-index: 10;
+}
+
+/* =========================
+   LOGO
+========================= */
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin: 50px 0 20px 0; /* space below toggle */
+  text-align: center;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+
+  border-radius: 8px;
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+.sidebar nav a:hover {
+  background: var(--sidebar-hover);
+}
+
+/* Active route */
+.sidebar nav a.active {
+  background: var(--primary);
+  color: white;
+}
+
+/* =========================
+   COLLAPSED STATE BEHAVIOR
+========================= */
+.sidebar.collapsed .text {
+  display: none;
+}
+
+.sidebar.collapsed nav a {
+  justify-content: center;
+}
+
+/* =========================
+   MAIN AREA
+========================= */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+/* Content area */
+.content {
+  padding: 16px;
+  height: 100%;
+  overflow: auto;
+}

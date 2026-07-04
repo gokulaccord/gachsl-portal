@@ -1,0 +1,80 @@
+<h2 mat-dialog-title>{{ dialogTitle }}</h2>
+
+<form [formGroup]="form">
+
+  <mat-dialog-content>
+
+   <mat-form-field appearance="outline" class="full-width">
+
+    <mat-label>Flat Number</mat-label>
+
+    <input matInput formControlName="flatNumber">
+
+    <mat-error *ngIf="form.get('flatNumber')?.hasError('required')">
+        Flat Number is required
+    </mat-error>
+
+</mat-form-field>
+
+   <mat-form-field appearance="outline" class="full-width">
+
+    <mat-label>Full Name</mat-label>
+
+    <input matInput formControlName="fullName">
+
+    <mat-error *ngIf="form.get('fullName')?.hasError('required')">
+        Full Name is required
+    </mat-error>
+
+</mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone">
+      
+    </mat-form-field>
+<mat-error *ngIf="form.get('phone')?.hasError('pattern')">
+    Phone number must be 10 digits
+</mat-error>
+<mat-form-field appearance="outline" class="full-width">
+
+    <mat-label>Email</mat-label>
+
+    <input matInput formControlName="email">
+
+    <mat-error *ngIf="form.get('email')?.hasError('email')">
+        Please enter a valid email address
+    </mat-error>
+
+</mat-form-field>
+
+    <mat-checkbox formControlName="isOwner">
+      Owner
+    </mat-checkbox>
+
+    <br><br>
+
+    <mat-checkbox formControlName="isActive">
+      Active
+    </mat-checkbox>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+
+    <button mat-button type="button" (click)="cancel()">
+      Cancel
+    </button>
+
+    <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="save()"
+    [disabled]="form.invalid">
+    {{ data ? 'Update' : 'Save' }}
+</button>
+
+  </mat-dialog-actions>
+
+</form>

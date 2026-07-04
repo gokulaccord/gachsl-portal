@@ -1,0 +1,66 @@
+@if (isLoading$ | async) {
+  <div class="global-loader">
+    <div class="spinner-container">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  </div>
+}
+<div class="layout">
+
+  <!-- Sidebar -->
+ <aside class="sidebar" [class.collapsed]="isCollapsed">
+
+  <button class="toggle-btn" (click)="toggleSidebar()">
+    ☰
+  </button>
+
+  <div class="sidebar-content">
+
+    <!-- <div class="logo">GACHSL</div> -->
+
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">
+        <span class="icon">🏠</span>
+        <span class="text">Dashboard</span>
+      </a>
+
+      <a routerLink="/members" routerLinkActive="active">
+        <span class="icon">👥</span>
+        <span class="text">Members</span>
+      </a>
+
+      <a routerLink="/redevelopment" routerLinkActive="active">
+        <span class="icon">🏗</span>
+        <span class="text">Redevelopment</span>
+      </a>
+
+      <a routerLink="/documents" routerLinkActive="active">
+        <span class="icon">📄</span>
+        <span class="text">Documents</span>
+      </a>
+
+      <a routerLink="/notices" routerLinkActive="active">
+        <span class="icon">📢</span>
+        <span class="text">Notices</span>
+      </a>
+
+    </nav>
+
+  </div>
+
+</aside>
+
+  <!-- Main Area -->
+  <div class="main">
+
+    <!-- Header -->
+    <app-header></app-header>
+
+    <!-- Content -->
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+</div>

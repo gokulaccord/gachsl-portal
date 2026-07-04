@@ -1,0 +1,146 @@
+:host {
+    display: block;
+    padding: 20px;
+    background: #f4f6f9;
+    min-height: calc(100vh - 70px);
+}
+
+/* Card */
+
+mat-card {
+
+    border-radius: 14px;
+
+    border: none;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+
+    padding: 24px;
+
+}
+
+/* Header */
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.page-header h2{
+
+    margin:0;
+
+    font-size:26px;
+
+    font-weight:600;
+
+}
+
+.page-header span{
+
+    color:#777;
+
+}
+
+/* Toolbar */
+
+.toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.search-box{
+
+    width:380px;
+
+}
+
+/* Table */
+
+table{
+
+    width:100%;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+}
+
+.mat-mdc-header-row{
+
+    background:#1565C0;
+
+}
+
+.mat-mdc-header-cell{
+
+    color:white !important;
+
+    font-weight:600;
+
+    font-size:14px;
+
+}
+
+.mat-mdc-row{
+
+    transition:.2s;
+
+}
+
+.mat-mdc-row:hover{
+
+    background:#F8FAFC;
+
+}
+
+.mat-mdc-cell{
+
+    padding-top:14px;
+
+    padding-bottom:14px;
+
+}
+
+/* Buttons */
+
+button[mat-raised-button]{
+
+    border-radius:8px;
+
+}
+
+/* Search */
+
+.mat-mdc-form-field{
+
+    font-size:14px;
+
+}
+
+/* Paginator */
+
+mat-paginator{
+
+    margin-top:15px;
+
+    border-top:1px solid #eee;
+
+    background:white;
+
+}
