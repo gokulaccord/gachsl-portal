@@ -39,7 +39,18 @@ export const routes: Routes = [
     import('./features/members/pages/member-list/member-list.component')
       .then(m => m.MemberListComponent)
 },
-
+{
+  path: 'settings',
+  loadComponent: () =>
+    import('./features/settings/pages/society-settings/society-settings.component')
+      .then(m => m.SocietySettingsComponent)
+},
+{
+    path: 'meetings',
+    loadComponent: () =>
+      import('./features/meetings/pages/meeting-list/meeting-list.component')
+        .then(m => m.MeetingListComponent)
+},
     ]
   },
 

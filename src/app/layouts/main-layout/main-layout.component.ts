@@ -5,6 +5,8 @@ import { LoaderService } from '../../core/services/loader.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {  OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-main-layout',
   standalone: true,
@@ -14,12 +16,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
-    HeaderComponent
+    HeaderComponent,
+    MatIconModule  
   ],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss'
 })
-export class MainLayoutComponent {
+export class MainLayoutComponent implements OnInit  {
 isCollapsed = false;
 isLoading$!: Observable<boolean>;
 constructor(private loaderService: LoaderService) {}

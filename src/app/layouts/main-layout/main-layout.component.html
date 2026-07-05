@@ -1,4 +1,4 @@
-@if (isLoading$ | async) {
+@if (false) {
   <div class="global-loader">
     <div class="spinner-container">
       <mat-spinner diameter="50"></mat-spinner>
@@ -20,27 +20,33 @@
 
     <nav>
       <a routerLink="/dashboard" routerLinkActive="active">
-        <span class="icon">🏠</span>
+        <mat-icon>dashboard</mat-icon>
         <span class="text">Dashboard</span>
       </a>
-
+<a routerLink="/settings" routerLinkActive="active">
+  <mat-icon>settings</mat-icon>
+  <span class="text">Settings</span>
+</a>
       <a routerLink="/members" routerLinkActive="active">
-        <span class="icon">👥</span>
+        <mat-icon>people</mat-icon>
         <span class="text">Members</span>
       </a>
-
+<a routerLink="/meetings" routerLinkActive="active">
+    <mat-icon>event</mat-icon>
+    <span class="text">Meetings</span>
+</a>
       <a routerLink="/redevelopment" routerLinkActive="active">
-        <span class="icon">🏗</span>
+        <mat-icon>build</mat-icon>
         <span class="text">Redevelopment</span>
       </a>
 
       <a routerLink="/documents" routerLinkActive="active">
-        <span class="icon">📄</span>
+        <mat-icon>description</mat-icon>
         <span class="text">Documents</span>
       </a>
 
       <a routerLink="/notices" routerLinkActive="active">
-        <span class="icon">📢</span>
+        <mat-icon>announcement</mat-icon>
         <span class="text">Notices</span>
       </a>
 

@@ -1,11 +1,48 @@
-.cards {
-  display: flex;
-  gap: 15px;
+.page-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 24px;
 }
 
-.card {
-  background: white;
-  padding: 20px;
-  flex: 1;
-  border-radius: 8px;
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
 }
+
+.stat-card {
+  color: white;
+  border-radius: 14px;
+  padding: 20px;
+  transition: .25s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+
+.material-icons {
+  font-size: 34px;
+}
+
+.value {
+  margin-top: 25px;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.blue { background:#1976d2; }
+.green { background:#388e3c; }
+.orange { background:#f57c00; }
+.red { background:#d32f2f; }
+.teal { background:#00897b; }
+.purple { background:#7b1fa2; }
+.indigo { background:#3949ab; }
+.cyan { background:#0097a7; }

@@ -31,6 +31,7 @@ export class MemberService {
     return this.http.put<ApiResponse<Member>>(`${this.apiUrl}/${id}`, member);
   }
 
+
   delete(id: number): Observable<ApiResponse<any>> {
     return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/${id}`);
   }

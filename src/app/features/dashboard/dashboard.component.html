@@ -1,7 +1,101 @@
-<h2>Welcome to GACHSL Dashboard</h2>
+<h2 class="page-title">Dashboard</h2>
 
-<div class="cards">
-  <div class="card">Users</div>
-  <div class="card">Payments</div>
-  <div class="card">Reports</div>
+@if (loading) {
+  <p>Loading...</p>
+}
+
+@if (summary) {
+
+<div class="dashboard-grid">
+
+  <mat-card class="stat-card blue">
+    <div class="card-header">
+      <span class="material-icons">groups</span>
+      <span>Total Members</span>
+    </div>
+
+    <div class="value">
+      {{ summary.totalMembers }}
+    </div>
+  </mat-card>
+
+  <mat-card class="stat-card green">
+    <div class="card-header">
+      <span class="material-icons">home</span>
+      <span>Owners</span>
+    </div>
+
+    <div class="value">
+      {{ summary.owners }}
+    </div>
+  </mat-card>
+
+  <mat-card class="stat-card orange">
+    <div class="card-header">
+      <span class="material-icons">person</span>
+      <span>Tenants</span>
+    </div>
+
+    <div class="value">
+      {{ summary.tenants }}
+    </div>
+  </mat-card>
+
+  <mat-card class="stat-card teal">
+    <div class="card-header">
+      <span class="material-icons">verified</span>
+      <span>Active Members</span>
+    </div>
+
+    <div class="value">
+      {{ summary.activeMembers }}
+    </div>
+  </mat-card>
+
+  <mat-card class="stat-card red">
+    <div class="card-header">
+      <span class="material-icons">block</span>
+      <span>Inactive Members</span>
+    </div>
+
+    <div class="value">
+      {{ summary.inactiveMembers }}
+    </div>
+  </mat-card>
+
+  <mat-card class="stat-card purple">
+    <div class="card-header">
+      <span class="material-icons">apartment</span>
+      <span>Total Flats</span>
+    </div>
+
+    <div class="value">
+      {{ summary.totalFlats }}
+    </div>
+  </mat-card>
+
+  <mat-card class="stat-card indigo">
+    <div class="card-header">
+      <span class="material-icons">meeting_room</span>
+      <span>Occupied</span>
+    </div>
+
+    <div class="value">
+      {{ summary.occupiedFlats }}
+    </div>
+  </mat-card>
+
+  <mat-card class="stat-card cyan">
+    <div class="card-header">
+      <span class="material-icons">door_front</span>
+      <span>Vacant</span>
+    </div>
+
+    <div class="value">
+      {{ summary.vacantFlats }}
+    </div>
+  </mat-card>
+
 </div>
+
+}

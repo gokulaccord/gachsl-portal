@@ -1,6 +1,6 @@
 <mat-card>
 
-    <div class="page-header">
+    <!-- <div class="page-header">
 
         <div>
             <h2>👥 Members</h2>
@@ -11,9 +11,15 @@
             <mat-icon>add</mat-icon>
             Add Member
         </button>
+  
 
-    </div>
-
+    </div> -->
+      <app-page-header
+title="Members"
+subtitle="Manage Society Members"
+buttonText="Add Member"
+(buttonClick)="addMember()">
+</app-page-header>
     <div class="toolbar">
 
         <mat-form-field appearance="outline" class="search-box">

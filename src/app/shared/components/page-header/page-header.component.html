@@ -1,0 +1,26 @@
+<div class="page-header">
+
+    <div>
+
+        <h1>{{title}}</h1>
+
+        <p>{{subtitle}}</p>
+
+    </div>
+
+    @if(showButton){
+
+    <button
+        mat-flat-button
+        color="primary"
+        (click)="buttonClick.emit()">
+
+        <mat-icon>{{buttonIcon}}</mat-icon>
+
+        {{buttonText}}
+
+    </button>
+
+    }
+
+</div>

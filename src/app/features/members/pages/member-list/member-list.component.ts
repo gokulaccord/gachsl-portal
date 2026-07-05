@@ -18,23 +18,25 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MemberFormComponent } from '../../components/member-form/member-form.component';
 import { SnackbarService } from '../../../../core/services/snackbar.service';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { PageHeaderComponent } from "../../../../shared/components/page-header/page-header.component";
 @Component({
   selector: 'app-member-list',
   standalone: true,
   imports: [
-   CommonModule,
-  MatCardModule,
-  MatButtonModule,
-  MatIconModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatInputModule,
-  MatFormFieldModule,
-  MatChipsModule,
-  MatTooltipModule,
-  MatDialogModule
-  ],
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatChipsModule,
+    MatTooltipModule,
+    MatDialogModule,
+    PageHeaderComponent
+],
   templateUrl: './member-list.component.html',
   styleUrls: ['./member-list.component.scss']
 })

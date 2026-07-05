@@ -1,28 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+
+import { DashboardService } from '../../core/services/dashboard.service';
+import { DashboardSummary } from '../../core/models/dashboard-summary.model';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [
+    CommonModule,
+    MatCardModule
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private http: HttpClient) { console.log('Dashboard Loaded');}
+  private dashboardService = inject(DashboardService);
+
+  summary?: DashboardSummary;
+
+  loading = false;
 
   ngOnInit(): void {
+    this.loadDashboard();
+  }
 
-    this.http.get('http://localhost:5278/api/Members')
-      .subscribe({
-        next: (response) => {
-          console.log('Response:', response);
-        },
-        error: (error) => {
-          console.log('Error:', error);
-        }
-      });
+  loadDashboard(): void {
+
+    this.loading = true;
+
+    this.dashboardService.getSummary().subscribe({
+      next: (response) => {
+        this.summary = response;
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      }
+    });
 
   }
 
