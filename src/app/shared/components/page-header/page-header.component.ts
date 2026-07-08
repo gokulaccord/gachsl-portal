@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -8,24 +10,25 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     MatButtonModule,
     MatIconModule
   ],
   templateUrl: './page-header.component.html',
-  styleUrl: './page-header.component.scss'
+  styleUrls: ['./page-header.component.scss']
 })
 export class PageHeaderComponent {
 
   @Input() title = '';
-
   @Input() subtitle = '';
 
   @Input() buttonText = '';
-
-  @Input() buttonIcon = 'add';
-
-  @Input() showButton = true;
+  @Input() buttonRoute = '';
 
   @Output() buttonClick = new EventEmitter<void>();
+
+  onButtonClick(): void {
+    this.buttonClick.emit();
+  }
 
 }

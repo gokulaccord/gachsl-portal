@@ -46,11 +46,29 @@ export const routes: Routes = [
       .then(m => m.SocietySettingsComponent)
 },
 {
-    path: 'meetings',
-    loadComponent: () =>
-      import('./features/meetings/pages/meeting-list/meeting-list.component')
-        .then(m => m.MeetingListComponent)
+  path: 'meetings',
+  loadComponent: () =>
+    import('./features/meetings/pages/meeting-list/meeting-list.component')
+      .then(m => m.MeetingListComponent)
 },
+{
+  path: 'meetings/add',
+  loadComponent: () =>
+    import('./features/meetings/pages/schedule-meeting/schedule-meeting.component')
+      .then(m => m.ScheduleMeetingComponent)
+},
+{
+  path: 'meetings/edit/:id',
+  loadComponent: () =>
+    import('./features/meetings/pages/schedule-meeting/schedule-meeting.component')
+      .then(m => m.ScheduleMeetingComponent)
+},
+{
+  path: 'notices',
+  loadChildren: () =>
+    import('./features/notices/notices.routes')
+      .then(routes => routes.NOTICE_ROUTES)
+}
     ]
   },
 

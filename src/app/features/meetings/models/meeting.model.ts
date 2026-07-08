@@ -1,6 +1,6 @@
 export interface Meeting {
 
-  id: number;
+  meetingId: number;
 
   meetingTitle: string;
 

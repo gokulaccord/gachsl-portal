@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  inject
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -11,8 +17,12 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { MeetingService } from '../../services/meeting.service';
 import { Meeting } from '../../models/meeting.model';
-import { PageHeaderComponent } from "../../../../shared/components/page-header/page-header.component";
 
+import { SnackbarService } from '../../../../core/services/snackbar.service';
+import { PageHeaderComponent } from '../../../../shared/components/page-header/page-header.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-meeting-list',
   standalone: true,
@@ -25,14 +35,17 @@ import { PageHeaderComponent } from "../../../../shared/components/page-header/p
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    PageHeaderComponent
+    PageHeaderComponent,
+    MatDialogModule,
+        RouterLink
 ],
   templateUrl: './meeting-list.component.html',
   styleUrl: './meeting-list.component.scss'
 })
-export class MeetingListComponent implements OnInit {
-
+export class MeetingListComponent implements OnInit, AfterViewInit {
+private dialog = inject(MatDialog);
   private meetingService = inject(MeetingService);
+  private snackbar = inject(SnackbarService);
 
   displayedColumns: string[] = [
     'meetingDate',
@@ -54,6 +67,11 @@ export class MeetingListComponent implements OnInit {
     this.loadMeetings();
   }
 
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
   loadMeetings(): void {
 
     this.loading = true;
@@ -64,16 +82,18 @@ export class MeetingListComponent implements OnInit {
 
         this.dataSource.data = response.data ?? [];
 
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-
         this.loading = false;
 
       },
 
       error: (err) => {
+
         console.error(err);
+
+        this.snackbar.error('Unable to load meetings.');
+
         this.loading = false;
+
       }
 
     });
@@ -87,5 +107,51 @@ export class MeetingListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
   }
+deleteMeeting(meeting: Meeting): void {
 
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    width: '400px',
+    data: {
+      title: 'Delete Meeting',
+      message: `Are you sure you want to delete "${meeting.meetingTitle}"?`
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+
+    if (!result) {
+      return;
+    }
+
+    this.meetingService.delete(meeting.meetingId).subscribe({
+
+      next: (response) => {
+
+        if (response.success) {
+
+          this.snackbar.success(response.message);
+
+          this.loadMeetings();
+
+        } else {
+
+          this.snackbar.error(response.message);
+
+        }
+
+      },
+
+     error: (err) => {
+
+  console.error(err);
+
+  this.snackbar.error(err.error?.message || 'Unable to delete meeting.');
+
+}
+
+    });
+
+  });
+
+}
 }
