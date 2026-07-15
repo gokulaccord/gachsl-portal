@@ -23,6 +23,9 @@ import { PageHeaderComponent } from '../../../../shared/components/page-header/p
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { RouterLink } from '@angular/router';
+import { SearchToolbarComponent } from "../../../../shared/components/search-toolbar/search-toolbar.component";
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MeetingDetailsDialogComponent } from '../../../../shared/components/meeting-details-dialog/meeting-details-dialog.component';
 @Component({
   selector: 'app-meeting-list',
   standalone: true,
@@ -37,7 +40,9 @@ import { RouterLink } from '@angular/router';
     MatIconModule,
     PageHeaderComponent,
     MatDialogModule,
-        RouterLink
+    RouterLink,
+    SearchToolbarComponent,
+    MatTooltipModule
 ],
   templateUrl: './meeting-list.component.html',
   styleUrl: './meeting-list.component.scss'
@@ -47,14 +52,15 @@ private dialog = inject(MatDialog);
   private meetingService = inject(MeetingService);
   private snackbar = inject(SnackbarService);
 
-  displayedColumns: string[] = [
-    'meetingDate',
-    'meetingTitle',
-    'venue',
-    'meetingType',
-    'status',
-    'actions'
-  ];
+ displayedColumns: string[] = [
+  'meetingDate',
+  'meetingTime',
+  'meetingTitle',
+  'venue',
+  'meetingType',
+  'status',
+  'actions'
+];
 
   dataSource = new MatTableDataSource<Meeting>();
 
@@ -150,6 +156,38 @@ deleteMeeting(meeting: Meeting): void {
 }
 
     });
+
+  });
+
+}
+formatTime(time: string): string {
+
+  if (!time) return '';
+
+  const parts = time.split(':');
+
+  let hour = Number(parts[0]);
+
+  const minute = parts[1];
+
+  const ampm = hour >= 12 ? 'PM' : 'AM';
+
+  hour = hour % 12;
+
+  if (hour === 0) {
+    hour = 12;
+  }
+
+  return `${hour}:${minute} ${ampm}`;
+
+}
+viewMeeting(meeting: Meeting): void {
+
+  this.dialog.open(MeetingDetailsDialogComponent, {
+
+    width: '650px',
+
+    data: meeting
 
   });
 

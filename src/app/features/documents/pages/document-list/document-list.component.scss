@@ -1,0 +1,272 @@
+:host {
+  display: block;
+  padding: 24px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+/* ===================================
+   Page Header
+=================================== */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.page-header p {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* ===================================
+   Toolbar
+=================================== */
+
+.toolbar {
+  margin-bottom: 20px;
+}
+
+.toolbar mat-form-field {
+  width: 360px;
+}
+
+/* ===================================
+   Table Card
+=================================== */
+
+.table-container {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+}
+
+/* ===================================
+   Table
+=================================== */
+
+table {
+  width: 100%;
+}
+
+/* Header */
+
+.mat-mdc-header-row {
+  background: #1976d2 !important;
+}
+
+.mat-mdc-header-cell {
+  color: white !important;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Rows */
+
+.mat-mdc-row {
+  transition: .25s;
+}
+
+.mat-mdc-row:hover {
+  background: #f4f9ff;
+}
+
+/* Cells */
+
+.mat-mdc-cell,
+.mat-mdc-header-cell {
+  padding: 18px 16px;
+}
+
+/* ===================================
+   File Cell
+=================================== */
+
+.file-cell {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.file-name {
+  font-weight: 600;
+  color: #374151;
+}
+
+.file-type {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+/* ===================================
+   File Badge
+=================================== */
+
+.file-badge {
+  width: 46px;
+  height: 46px;
+
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  flex-shrink: 0;
+}
+
+/* PDF */
+
+.pdf {
+  background: #e53935;
+}
+
+/* WORD */
+
+.word {
+  background: #1565c0;
+}
+
+/* EXCEL */
+
+.excel {
+  background: #2e7d32;
+}
+
+/* IMAGE */
+
+.image {
+  background: #fb8c00;
+}
+
+/* OTHER */
+
+.file {
+  background: #757575;
+}
+
+/* ===================================
+   Category Chip
+=================================== */
+
+.category-chip {
+
+  background: #eef4ff;
+
+  color: #1565c0;
+
+  padding: 6px 12px;
+
+  border-radius: 18px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+/* ===================================
+   Action Buttons
+=================================== */
+
+.action-buttons {
+
+  display: flex;
+
+  gap: 6px;
+
+}
+
+.action-buttons button {
+
+  transition: .25s;
+
+}
+
+.action-buttons button:hover {
+
+  transform: scale(1.12);
+
+}
+
+/* View */
+
+.view-btn {
+
+  color: #1976d2;
+
+}
+
+/* Download */
+
+.download-btn {
+
+  color: #2e7d32;
+
+}
+
+/* Edit */
+
+.edit-btn {
+
+  color: #fb8c00;
+
+}
+
+/* Delete */
+
+.delete-btn {
+
+  color: #e53935;
+
+}
+
+/* ===================================
+   Paginator
+=================================== */
+
+mat-paginator {
+
+  border-top: 1px solid #ececec;
+
+}
+
+/* ===================================
+   Responsive
+=================================== */
+
+@media(max-width:900px){
+
+.page-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:15px;
+
+}
+
+.toolbar mat-form-field{
+
+width:100%;
+
+}
+
+}

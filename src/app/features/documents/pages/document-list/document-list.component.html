@@ -1,0 +1,229 @@
+<div class="page">
+
+  <!-- Header -->
+
+ <app-page-header
+    title="Documents"
+    subtitle="Manage Society Documents"
+    buttonText="Add Document"
+    buttonIcon="upload_file"
+    buttonRoute="/documents/add">
+</app-page-header>
+
+  <!-- Toolbar -->
+
+  <app-search-toolbar
+    placeholder="Search Documents"
+    (search)="applyFilter($event)">
+</app-search-toolbar>
+
+  <!-- Table -->
+
+  <div class="table-container">
+
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort>
+
+      <!-- File -->
+
+      <ng-container matColumnDef="file">
+
+        <th mat-header-cell *matHeaderCellDef>
+
+          File
+
+        </th>
+
+        <td mat-cell *matCellDef="let d">
+
+          <div class="file-cell">
+
+            <div
+              class="file-badge"
+              [ngClass]="getFileBadgeClass(d.fileExtension)">
+
+              {{ getFileBadgeText(d.fileExtension) }}
+
+            </div>
+
+            <div>
+
+              <div class="file-name">
+
+                {{d.fileName}}
+
+              </div>
+
+              <div class="file-type">
+
+                {{d.mimeType}}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </td>
+
+      </ng-container>
+
+      <!-- Title -->
+
+      <ng-container matColumnDef="title">
+
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header>
+
+          Title
+
+        </th>
+
+        <td mat-cell *matCellDef="let d">
+
+          {{d.title}}
+
+        </td>
+
+      </ng-container>
+
+      <!-- Category -->
+
+      <ng-container matColumnDef="category">
+
+        <th mat-header-cell *matHeaderCellDef>
+
+          Category
+
+        </th>
+
+        <td mat-cell *matCellDef="let d">
+
+          <span class="category-chip">
+
+            {{d.categoryName}}
+
+          </span>
+
+        </td>
+
+      </ng-container>
+
+      <!-- Size -->
+
+      <ng-container matColumnDef="size">
+
+        <th mat-header-cell *matHeaderCellDef>
+
+          Size
+
+        </th>
+
+        <td mat-cell *matCellDef="let d">
+
+          {{formatFileSize(d.fileSize)}}
+
+        </td>
+
+      </ng-container>
+
+      <!-- Publish Date -->
+
+      <ng-container matColumnDef="publishDate">
+
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header>
+
+          Published
+
+        </th>
+
+        <td mat-cell *matCellDef="let d">
+
+          {{d.publishDate | date:'dd MMM yyyy'}}
+
+        </td>
+
+      </ng-container>
+
+      <!-- Actions -->
+
+      <ng-container matColumnDef="actions">
+
+        <th mat-header-cell *matHeaderCellDef>
+
+          Actions
+
+        </th>
+
+        <td mat-cell *matCellDef="let d">
+
+          <div class="action-buttons">
+
+            <button
+              mat-icon-button
+              class="view-btn"
+              (click)="view(d)"
+              matTooltip="View">
+
+              <mat-icon>visibility</mat-icon>
+
+            </button>
+
+            <button
+              mat-icon-button
+              class="download-btn"
+              (click)="download(d)"
+              matTooltip="Download">
+
+              <mat-icon>download</mat-icon>
+
+            </button>
+
+            <button
+              mat-icon-button
+              class="edit-btn"
+              (click)="edit(d)"
+              matTooltip="Edit">
+
+              <mat-icon>edit</mat-icon>
+
+            </button>
+
+            <button
+              mat-icon-button
+              class="delete-btn"
+              (click)="delete(d)"
+              matTooltip="Delete">
+
+              <mat-icon>delete</mat-icon>
+
+            </button>
+
+          </div>
+
+        </td>
+
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[5,10,25]">
+
+    </mat-paginator>
+
+  </div>
+
+</div>

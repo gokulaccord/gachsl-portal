@@ -1,41 +1,15 @@
-<div class="search-box">
 
-  <mat-form-field appearance="outline">
-
-    <mat-label>Search Notice</mat-label>
-
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Search by title/category">
-
-  </mat-form-field>
-
-</div>
-
-<div class="page-header">
-
-  <div class="page-header-left">
-    <h2>Notices</h2>
-    <p>Manage society notices</p>
-  </div>
-
-  <div class="page-header-right">
-
-    <button
-      mat-raised-button
-      color="primary"
-      routerLink="/notices/add">
-
-      <mat-icon>add</mat-icon>
-      Add Notice
-
-    </button>
-
-  </div>
-
-</div>
-
+ <app-page-header
+    title="Notices"
+    subtitle="Manage Society Notices"
+    buttonText="Add Notice"
+    buttonIcon="add"
+    buttonRoute="/notices/add">
+</app-page-header>
+<app-search-toolbar
+    placeholder="Search Notices"
+    (search)="applyFilter($event)">
+</app-search-toolbar>
 
 <div class="table-container">
 

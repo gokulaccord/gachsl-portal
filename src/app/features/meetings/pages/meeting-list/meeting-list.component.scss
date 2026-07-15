@@ -25,3 +25,100 @@ td{
     border-bottom:1px solid #ddd;
 
 }
+:host ::ng-deep .mat-mdc-header-row {
+    background-color: #1976d2 !important;
+}
+
+:host ::ng-deep .mat-mdc-header-cell {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+:host ::ng-deep .mat-sort-header-arrow {
+    color: #ffffff !important;
+}
+/* ==========================
+   Status Chips
+========================== */
+
+.status-chip {
+
+    display: inline-block;
+
+    padding: 4px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #fff;
+
+    min-width: 90px;
+
+    text-align: center;
+
+}
+
+.status-chip.scheduled {
+
+    background: #2e7d32;
+
+}
+
+.status-chip.draft {
+
+    background: #f9a825;
+
+}
+
+.status-chip.cancelled {
+
+    background: #d32f2f;
+
+}
+.time-icon{
+
+    font-size:18px;
+
+    width:18px;
+
+    height:18px;
+
+    vertical-align:middle;
+
+    margin-right:6px;
+
+    color:#1976d2;
+
+}
+.action-btn{
+
+    transition:.25s;
+
+}
+
+.action-btn:hover{
+
+    transform:scale(1.15);
+
+}
+
+.action-btn.view{
+
+    color:#1976d2;
+
+}
+
+.action-btn.edit{
+
+    color:#388e3c;
+
+}
+
+.action-btn.delete{
+
+    color:#d32f2f;
+
+}

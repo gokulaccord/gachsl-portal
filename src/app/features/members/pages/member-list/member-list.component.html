@@ -14,27 +14,17 @@
   
 
     </div> -->
-      <app-page-header
-title="Members"
-subtitle="Manage Society Members"
-buttonText="Add Member"
-(buttonClick)="addMember()">
+<app-page-header
+    title="Members"
+    subtitle="Manage Society Members"
+    buttonText="Add Member"
+    buttonIcon="person_add"
+    (buttonClick)="addMember()">
 </app-page-header>
-    <div class="toolbar">
-
-        <mat-form-field appearance="outline" class="search-box">
-
-            <mat-icon matPrefix>search</mat-icon>
-
-            <input
-                matInput
-                placeholder="Search members..."
-                (keyup)="applyFilter($event)">
-
-        </mat-form-field>
-
-    </div>
-
+ <app-search-toolbar
+    placeholder="Search Members"
+    (search)="applyFilter($event)">
+</app-search-toolbar>
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
 
     <ng-container matColumnDef="flatNumber">

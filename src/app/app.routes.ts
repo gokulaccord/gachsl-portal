@@ -68,6 +68,12 @@ export const routes: Routes = [
   loadChildren: () =>
     import('./features/notices/notices.routes')
       .then(routes => routes.NOTICE_ROUTES)
+},
+{
+  path: 'documents',
+  loadChildren: () =>
+    import('./features/documents/documents.routes')
+      .then(m => m.DOCUMENT_ROUTES)
 }
     ]
   },

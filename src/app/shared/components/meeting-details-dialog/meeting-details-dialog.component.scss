@@ -1,0 +1,115 @@
+mat-dialog-content{
+
+    min-width:500px;
+
+    padding-top:10px;
+
+}
+
+.title-icon{
+
+    vertical-align:middle;
+
+    margin-right:8px;
+
+    color:#1976d2;
+
+}
+
+.detail-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 0;
+
+    border-bottom:1px solid #eeeeee;
+
+}
+
+.label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:600;
+
+    color:#555;
+
+}
+
+.value{
+
+    font-weight:500;
+
+    color:#222;
+
+}
+
+.description{
+
+    margin-top:25px;
+
+}
+
+.description h3{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:10px;
+
+    font-size:18px;
+
+}
+
+.description p{
+
+    white-space:pre-wrap;
+
+    color:#555;
+
+    line-height:1.6;
+
+}
+
+.status{
+
+    padding:5px 14px;
+
+    border-radius:20px;
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.scheduled{
+
+    background:#2e7d32;
+
+}
+
+.draft{
+
+    background:#f9a825;
+
+}
+
+.cancelled{
+
+    background:#d32f2f;
+
+}

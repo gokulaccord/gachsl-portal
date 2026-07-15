@@ -19,6 +19,7 @@ import { MemberFormComponent } from '../../components/member-form/member-form.co
 import { SnackbarService } from '../../../../core/services/snackbar.service';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { PageHeaderComponent } from "../../../../shared/components/page-header/page-header.component";
+import { SearchToolbarComponent } from "../../../../shared/components/search-toolbar/search-toolbar.component";
 @Component({
   selector: 'app-member-list',
   standalone: true,
@@ -35,7 +36,8 @@ import { PageHeaderComponent } from "../../../../shared/components/page-header/p
     MatChipsModule,
     MatTooltipModule,
     MatDialogModule,
-    PageHeaderComponent
+    PageHeaderComponent,
+    SearchToolbarComponent
 ],
   templateUrl: './member-list.component.html',
   styleUrls: ['./member-list.component.scss']

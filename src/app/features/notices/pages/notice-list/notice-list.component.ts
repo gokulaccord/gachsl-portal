@@ -18,6 +18,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SnackbarService } from '../../../../core/services/snackbar.service';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { SearchToolbarComponent } from "../../../../shared/components/search-toolbar/search-toolbar.component";
+import { PageHeaderComponent } from "../../../../shared/components/page-header/page-header.component";
 
 @Component({
   selector: 'app-notice-list',
@@ -32,8 +34,10 @@ import { ConfirmDialogComponent } from '../../../../shared/components/confirm-di
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    RouterModule
-  ],
+    RouterModule,
+    SearchToolbarComponent,
+    PageHeaderComponent
+],
   templateUrl: './notice-list.component.html',
   styleUrl: './notice-list.component.scss'
 })

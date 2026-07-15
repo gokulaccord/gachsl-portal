@@ -1,13 +1,43 @@
-mat-dialog-content {
+h2{
 
-  min-width: 350px;
+display:flex;
 
-  font-size: 15px;
+align-items:center;
+
+gap:10px;
 
 }
 
-mat-dialog-actions {
+mat-icon{
 
-  padding-top: 20px;
+color:#f44336;
+
+}
+
+strong{
+
+display:block;
+
+margin-top:12px;
+
+font-size:15px;
+
+color:#1976d2;
+
+word-break:break-word;
+
+}
+
+mat-dialog-content{
+
+min-width:360px;
+
+padding-top:10px;
+
+}
+
+mat-dialog-actions{
+
+padding-top:20px;
 
 }

@@ -18,7 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./page-header.component.scss']
 })
 export class PageHeaderComponent {
-
+@Input() buttonIcon = 'add';
   @Input() title = '';
   @Input() subtitle = '';
 
