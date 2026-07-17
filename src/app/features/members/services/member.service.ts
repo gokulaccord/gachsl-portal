@@ -6,7 +6,8 @@ import { environment } from '../../../../environments/environment';
 import { ApiResponse } from '../../../core/models/api-response.model';
 import { Member } from '../models/member.model';
 import { CreateMember } from '../models/create-member.model';
-
+import { MemberLookup } from '../../../core/models/member-lookup.model';
+import { DocumentLookup } from '../../../core/models/document-lookup.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -35,5 +36,21 @@ export class MemberService {
   delete(id: number): Observable<ApiResponse<any>> {
     return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/${id}`);
   }
-  
+getAvailableMembers(consentId?: number) {
+
+  let url = `${this.apiUrl}/available`;
+
+  if (consentId) {
+    url += `?consentId=${consentId}`;
+  }
+
+  return this.http.get<MemberLookup[]>(url);
+}
+getLookup(): Observable<DocumentLookup[]> {
+
+  return this.http.get<DocumentLookup[]>(
+    `${this.apiUrl}/lookup`
+  );
+
+}
 }

@@ -74,6 +74,12 @@ export const routes: Routes = [
   loadChildren: () =>
     import('./features/documents/documents.routes')
       .then(m => m.DOCUMENT_ROUTES)
+},
+{
+    path: 'consents',
+    loadChildren: () =>
+        import('./features/consents/consent.routes')
+            .then(m => m.CONSENT_ROUTES)
 }
     ]
   },

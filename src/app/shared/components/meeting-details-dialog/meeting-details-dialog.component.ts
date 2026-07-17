@@ -11,14 +11,20 @@ MatDialogRef
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { FileCardComponent } from '../../../shared/components/file-card/file-card.component';
+import { MatTabsModule } from '@angular/material/tabs';
 @Component({
   selector: 'app-meeting-details-dialog',
   standalone: true,
   imports: [
-    CommonModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatIconModule
+  CommonModule,
+  MatDialogModule,
+  MatButtonModule,
+  MatIconModule,
+  FileCardComponent,
+  MatTabsModule
   ],
   templateUrl: './meeting-details-dialog.component.html',
   styleUrls: ['./meeting-details-dialog.component.scss']
@@ -29,7 +35,7 @@ documents: any[] = [];
 loadingDocuments = false;
   constructor(
     private dialogRef: MatDialogRef<MeetingDetailsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public meeting:any, private meetingDocumentService: MeetingDocumentService,private snackBar: MatSnackBar
+    @Inject(MAT_DIALOG_DATA) public meeting:any, private meetingDocumentService: MeetingDocumentService,private snackBar: MatSnackBar, private dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.loadDocuments();
@@ -120,40 +126,65 @@ onFileSelected(event:any): void {
         });
 
 }
-deleteDocument(id:number): void {
+deleteDocument(id: number, fileName: string): void {
 
-    if (!confirm('Delete this attachment?'))
-        return;
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        width: '420px',
+        disableClose: true,
+        data: {
+            title: 'Delete Attachment',
+            message: 'Are you sure you want to delete this attachment?',
+            itemName: fileName
+        }
+    });
 
-    this.meetingDocumentService
-        .delete(id)
-        .subscribe({
+    dialogRef.afterClosed().subscribe(result => {
 
-            next: () => {
+        if (!result)
+            return;
 
-                this.snackBar.open(
-                    'Attachment deleted',
-                    'Close',
-                    {
-                        duration:3000
-                    });
+        this.meetingDocumentService
+            .delete(id)
+            .subscribe({
 
-                this.loadDocuments();
+                next: () => {
 
-            },
+                    this.snackBar.open(
+                        'Attachment deleted successfully',
+                        'Close',
+                        {
+                            duration: 3000
+                        });
 
-            error: () => {
+                    this.loadDocuments();
 
-                this.snackBar.open(
-                    'Delete failed',
-                    'Close',
-                    {
-                        duration:3000
-                    });
+                },
 
-            }
+                error: () => {
 
-        });
+                    this.snackBar.open(
+                        'Delete failed',
+                        'Close',
+                        {
+                            duration: 3000
+                        });
+
+                }
+
+            });
+
+    });
+
+}
+openView(doc: any): void {
+
+    window.open(doc.viewUrl, '_blank');
+
+}
+
+openDownload(doc: any): void {
+
+    window.open(doc.downloadUrl, '_blank');
 
 }
 }

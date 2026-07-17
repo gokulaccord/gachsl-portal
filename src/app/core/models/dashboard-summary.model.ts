@@ -1,10 +1,19 @@
 export interface DashboardSummary {
-  totalMembers: number;
-  owners: number;
-  tenants: number;
-  activeMembers: number;
-  inactiveMembers: number;
   totalFlats: number;
-  occupiedFlats: number;
-  vacantFlats: number;
+  totalShops: number;
+
+  totalMembers: number;
+  activeMembers: number;
+
+  consentYes: number;
+  consentNo: number;
+  consentPending: number;
+  consentPercentage: number;
+
+  totalMeetings: number;
+  totalNotices: number;
+  totalDocuments: number;
+
+  currentStage: number;
+  totalStages: number;
 }

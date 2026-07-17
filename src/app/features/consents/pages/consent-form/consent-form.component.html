@@ -1,0 +1,166 @@
+<app-page-header
+    [title]="isEditMode ? 'Edit Consent' : 'Add Consent'"
+    subtitle="Manage Member Redevelopment Consent">
+</app-page-header>
+
+<mat-card>
+
+    <mat-card-content>
+
+        <form [formGroup]="consentForm">
+
+            <div class="form-grid">
+
+                <!-- Member -->
+
+                <mat-form-field appearance="outline">
+
+                    <mat-label>Member</mat-label>
+
+                    <mat-select
+                        formControlName="memberId"
+                        [disabled]="isEditMode">
+
+                        <mat-option
+                            *ngFor="let member of members"
+                            [value]="member.memberId">
+
+                            {{ member.flatNumber }} - {{ member.fullName }}
+
+                        </mat-option>
+
+                    </mat-select>
+
+                    <mat-error *ngIf="consentForm.get('memberId')?.hasError('required')">
+                        Member is required
+                    </mat-error>
+
+                </mat-form-field>
+
+                <!-- Supporting Document -->
+
+                <mat-form-field appearance="outline">
+
+                    <mat-label>Supporting Document</mat-label>
+
+                    <mat-select formControlName="documentId">
+
+                        <mat-option [value]="null">
+                            -- Select Document --
+                        </mat-option>
+
+                        <mat-option
+                            *ngFor="let doc of documents"
+                            [value]="doc.documentId">
+
+                            {{ doc.documentId }} - {{ doc.title }}
+
+                        </mat-option>
+
+                    </mat-select>
+
+                </mat-form-field>
+
+                <!-- Consent Status -->
+
+                <mat-form-field appearance="outline">
+
+                    <mat-label>Consent Status</mat-label>
+
+                    <mat-select formControlName="consentStatus">
+
+                        <mat-option
+                            *ngFor="let status of consentStatuses"
+                            [value]="status.id">
+
+                            {{ status.name }}
+
+                        </mat-option>
+
+                    </mat-select>
+
+                </mat-form-field>
+
+                <!-- Consent Date -->
+
+                <mat-form-field appearance="outline">
+
+                    <mat-label>Consent Date</mat-label>
+
+                    <input
+                        matInput
+                        [matDatepicker]="picker"
+                        formControlName="consentDate">
+
+                    <mat-datepicker-toggle
+                        matIconSuffix
+                        [for]="picker">
+                    </mat-datepicker-toggle>
+
+                    <mat-datepicker #picker></mat-datepicker>
+
+                </mat-form-field>
+
+                <!-- Remarks -->
+
+                <mat-form-field
+                    appearance="outline"
+                    class="full-width">
+
+                    <mat-label>Remarks</mat-label>
+
+                    <textarea
+                        matInput
+                        rows="5"
+                        formControlName="remarks">
+                    </textarea>
+
+                </mat-form-field>
+
+            </div>
+
+            <div class="button-row">
+
+                <button
+                    mat-stroked-button
+                    color="warn"
+                    type="button"
+                    (click)="cancel()">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    mat-flat-button
+                    color="primary"
+                    type="button"
+                    (click)="save()">
+
+                    {{ isEditMode ? 'Update Consent' : 'Save Consent' }}
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </mat-card-content>
+
+</mat-card>
+
+<!-- ================= DEBUG ================= -->
+
+<!-- <mat-card style="margin-top:20px">
+
+    <mat-card-content>
+
+        <h3>Debug Information</h3>
+
+        <p><b>Documents Length:</b> {{ documents.length }}</p>
+
+        <pre>{{ documents | json }}</pre>
+
+    </mat-card-content>
+
+</mat-card> -->

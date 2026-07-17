@@ -8,222 +8,251 @@
 
 <mat-dialog-content>
 
-    <div class="detail-row">
+    <mat-tab-group animationDuration="0ms">
 
-        <span class="label">
-            <mat-icon>title</mat-icon>
-            Title
-        </span>
+        <!-- DETAILS TAB -->
 
-        <span class="value">
-            {{ meeting.meetingTitle }}
-        </span>
+        <mat-tab label="Details">
+
+            <div class="detail-row">
+
+                <span class="label">
+                    <mat-icon>title</mat-icon>
+                    Title
+                </span>
+
+                <span class="value">
+                    {{ meeting.meetingTitle }}
+                </span>
+
+            </div>
+
+            <div class="detail-row">
+
+                <span class="label">
+                    <mat-icon>calendar_month</mat-icon>
+                    Date
+                </span>
+
+                <span class="value">
+                    {{ meeting.meetingDate | date:'dd-MMM-yyyy' }}
+                </span>
+
+            </div>
+
+            <div class="detail-row">
+
+                <span class="label">
+                    <mat-icon>schedule</mat-icon>
+                    Time
+                </span>
+
+                <span class="value">
+                    {{ meeting.meetingTime }}
+                </span>
+
+            </div>
+
+            <div class="detail-row">
+
+                <span class="label">
+                    <mat-icon>location_on</mat-icon>
+                    Venue
+                </span>
+
+                <span class="value">
+                    {{ meeting.venue }}
+                </span>
+
+            </div>
+
+            <div class="detail-row">
+
+                <span class="label">
+                    <mat-icon>groups</mat-icon>
+                    Type
+                </span>
+
+                <span class="value">
+                    {{ meeting.meetingType }}
+                </span>
+
+            </div>
+
+            <div class="detail-row">
+
+                <span class="label">
+                    <mat-icon>flag</mat-icon>
+                    Status
+                </span>
+
+                <span>
+
+                    <span
+                        class="status scheduled"
+                        *ngIf="meeting.status=='Scheduled'">
+
+                        Scheduled
+
+                    </span>
+
+                    <span
+                        class="status draft"
+                        *ngIf="meeting.status=='Draft'">
+
+                        Draft
+
+                    </span>
+
+                    <span
+                        class="status cancelled"
+                        *ngIf="meeting.status=='Cancelled'">
+
+                        Cancelled
+
+                    </span>
+
+                </span>
+
+            </div>
+
+            <div
+                class="description"
+                *ngIf="meeting.description">
+
+                <h3>
+
+                    <mat-icon>description</mat-icon>
+
+                    Description
+
+                </h3>
+
+                <p>
+
+                    {{ meeting.description }}
+
+                </p>
+
+            </div>
+
+        </mat-tab>
+
+        <!-- ATTACHMENTS TAB -->
+
+        <mat-tab label="Attachments">
+
+            <div class="description">
+
+                <div style="margin-bottom:15px;">
+
+                    <input
+                        #fileInput
+                        type="file"
+                        hidden
+                        (change)="onFileSelected($event)">
+
+                    <button
+                        mat-flat-button
+                        color="primary"
+                        (click)="fileInput.click()">
+
+                        <mat-icon>upload</mat-icon>
+
+                        Upload Attachment
+
+                    </button>
+
+                </div>
+
+                <div *ngIf="loadingDocuments">
+
+                    Loading attachments...
+
+                </div>
+
+                <div
+                    *ngIf="!loadingDocuments && documents.length == 0">
+
+                    No attachments found.
+
+                </div>
+
+                <div class="attachment-list">
+
+                    <app-file-card
+                        *ngFor="let doc of documents"
+
+                        [fileName]="doc.fileName"
+                        [fileSize]="doc.fileSize"
+                        [fileExtension]="doc.fileName"
+
+                        [showView]="true"
+                        [showDownload]="true"
+                        [showDelete]="true"
+
+                        (view)="openView(doc)"
+                        (download)="openDownload(doc)"
+                        (delete)="deleteDocument(doc.id, doc.fileName)">
+                    </app-file-card>
+
+                </div>
+
+            </div>
+
+        </mat-tab>
+
+        <!-- MINUTES TAB -->
+
+        <!-- <mat-tab label="Minutes">
+
+            <div class="description">
+
+                <div *ngIf="meeting.minutes; else noMinutes">
+
+                    <p>{{ meeting.minutes }}</p>
+
+                </div>
+
+                <ng-template #noMinutes>
+
+                    <p>No meeting minutes available.</p>
+
+                </ng-template>
+
+            </div>
+
+        </mat-tab> -->
+        <mat-tab label="Minutes">
+
+    <div class="minutes-section">
+
+        <div *ngIf="meeting.minutes; else noMinutes">
+
+            <pre>{{ meeting.minutes }}</pre>
+
+        </div>
+
+        <ng-template #noMinutes>
+
+            <div class="empty-state">
+
+                <mat-icon>description</mat-icon>
+
+                <p>No meeting minutes available.</p>
+
+            </div>
+
+        </ng-template>
 
     </div>
 
-    <div class="detail-row">
+</mat-tab>
 
-        <span class="label">
-            <mat-icon>calendar_month</mat-icon>
-            Date
-        </span>
-
-        <span class="value">
-            {{ meeting.meetingDate | date:'dd-MMM-yyyy' }}
-        </span>
-
-    </div>
-
-    <div class="detail-row">
-
-        <span class="label">
-            <mat-icon>schedule</mat-icon>
-            Time
-        </span>
-
-        <span class="value">
-            {{ meeting.meetingTime }}
-        </span>
-
-    </div>
-
-    <div class="detail-row">
-
-        <span class="label">
-            <mat-icon>location_on</mat-icon>
-            Venue
-        </span>
-
-        <span class="value">
-            {{ meeting.venue }}
-        </span>
-
-    </div>
-
-    <div class="detail-row">
-
-        <span class="label">
-            <mat-icon>groups</mat-icon>
-            Type
-        </span>
-
-        <span class="value">
-            {{ meeting.meetingType }}
-        </span>
-
-    </div>
-
-    <div class="detail-row">
-
-        <span class="label">
-            <mat-icon>flag</mat-icon>
-            Status
-        </span>
-
-        <span>
-
-            <span
-                class="status scheduled"
-                *ngIf="meeting.status=='Scheduled'">
-
-                Scheduled
-
-            </span>
-
-            <span
-                class="status draft"
-                *ngIf="meeting.status=='Draft'">
-
-                Draft
-
-            </span>
-
-            <span
-                class="status cancelled"
-                *ngIf="meeting.status=='Cancelled'">
-
-                Cancelled
-
-            </span>
-
-        </span>
-
-    </div>
-
-    <div
-        class="description"
-        *ngIf="meeting.description">
-
-        <h3>
-
-            <mat-icon>description</mat-icon>
-
-            Description
-
-        </h3>
-
-        <p>
-
-            {{ meeting.description }}
-
-        </p>
-
-    </div>
+    </mat-tab-group>
 
 </mat-dialog-content>
 
-<hr>
-
-<div class="description">
-
-    <h3>
-
-        <mat-icon>attach_file</mat-icon>
-
-        Attachments
-
-    </h3>
-
-    <div *ngIf="loadingDocuments">
-
-        Loading attachments...
-
-    </div>
-
-    <div
-        *ngIf="!loadingDocuments && documents.length == 0">
-
-        No attachments found.
-
-    </div>
-
-    <div
-        *ngFor="let doc of documents"
-        class="detail-row">
-
-        <span class="label">
-
-            <mat-icon>picture_as_pdf</mat-icon>
-
-            {{ doc.fileName }}
-
-        </span>
-
-        <span class="value">
-
-          <a
-    [href]="doc.viewUrl"
-    target="_blank">
-
-    View
-
-</a>
-
-&nbsp; | &nbsp;
-
-<a
-    [href]="doc.downloadUrl"
-    target="_blank">
-
-    Download
-
-</a>
-
-&nbsp; | &nbsp;
-
-<a
-    href="javascript:void(0)"
-    (click)="deleteDocument(doc.id)">
-
-    Delete
-
-</a>
-
-        </span>
-
-    </div>
-
-</div>
-<div style="margin-bottom:15px;">
-
-    <input
-        #fileInput
-        type="file"
-        hidden
-        (change)="onFileSelected($event)">
-
-    <button
-        mat-flat-button
-        color="primary"
-        (click)="fileInput.click()">
-
-        <mat-icon>upload</mat-icon>
-
-        Upload Attachment
-
-    </button>
-
-</div>
 <mat-dialog-actions align="end">
 
     <button

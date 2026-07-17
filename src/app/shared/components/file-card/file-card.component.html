@@ -1,0 +1,61 @@
+<mat-card class="file-card">
+
+    <div class="file-row">
+
+        <div class="file-header">
+
+            <mat-icon class="file-icon">
+                {{ getFileIcon() }}
+            </mat-icon>
+
+            <div class="file-info">
+
+                <div class="file-name">
+                    {{ fileName }}
+                </div>
+
+                <div class="file-meta">
+                    {{ getFileSize() }}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="file-actions">
+
+            <button
+                mat-icon-button
+                color="primary"
+                (click)="view.emit()"
+                matTooltip="View">
+
+                <mat-icon>visibility</mat-icon>
+
+            </button>
+
+            <button
+                mat-icon-button
+                color="primary"
+                (click)="download.emit()"
+                matTooltip="Download">
+
+                <mat-icon>download</mat-icon>
+
+            </button>
+
+            <button
+                mat-icon-button
+                color="warn"
+                (click)="delete.emit()"
+                matTooltip="Delete">
+
+                <mat-icon>delete</mat-icon>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</mat-card>

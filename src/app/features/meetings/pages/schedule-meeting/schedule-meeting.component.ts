@@ -65,6 +65,7 @@ meetingId = 0;
     meetingType: ['', Validators.required],
     meetingDate: ['', Validators.required],
     meetingTime: ['', Validators.required],
+    minutes: [''],       
     venue: ['', Validators.required],
     description: [''],
     status: ['Scheduled', Validators.required]
@@ -101,6 +102,7 @@ loadMeeting(): void {
 }
  save(): void {
 console.log('Save clicked');
+console.log('Saving:', this.meetingForm.value);
   if (this.meetingForm.invalid) {
     this.meetingForm.markAllAsTouched();
     return;

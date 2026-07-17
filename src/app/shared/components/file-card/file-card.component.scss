@@ -1,0 +1,46 @@
+.file-card {
+  margin-bottom: 12px;
+}
+
+.file-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.file-header {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.file-icon {
+  font-size: 38px;
+  width: 38px;
+  height: 38px;
+  color: #1976d2;
+  margin-right: 15px;
+}
+
+.file-info {
+  flex: 1;
+}
+
+.file-name {
+  font-weight: 600;
+  font-size: 16px;
+  word-break: break-word;
+}
+
+.file-meta {
+  font-size: 13px;
+  color: #666;
+}
+
+.file-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}

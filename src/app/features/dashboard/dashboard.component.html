@@ -1,101 +1,167 @@
-<h2 class="page-title">Dashboard</h2>
+<div class="dashboard">
 
-@if (loading) {
-  <p>Loading...</p>
-}
+  <h1 class="page-title">Dashboard</h1>
+  <p class="page-subtitle">Welcome to GACHSL Redevelopment Portal</p>
 
-@if (summary) {
+  <div class="dashboard-grid">
 
-<div class="dashboard-grid">
+    <div class="card members">
+      <div class="icon">
+        <mat-icon>groups</mat-icon>
+      </div>
 
-  <mat-card class="stat-card blue">
-    <div class="card-header">
-      <span class="material-icons">groups</span>
-      <span>Total Members</span>
+      <div class="details">
+        <h3>Total Members</h3>
+        <h1>{{summary?.totalMembers}}</h1>
+      </div>
     </div>
 
-    <div class="value">
-      {{ summary.totalMembers }}
-    </div>
-  </mat-card>
+    <div class="card active">
+      <div class="icon">
+        <mat-icon>verified_user</mat-icon>
+      </div>
 
-  <mat-card class="stat-card green">
-    <div class="card-header">
-      <span class="material-icons">home</span>
-      <span>Owners</span>
-    </div>
-
-    <div class="value">
-      {{ summary.owners }}
-    </div>
-  </mat-card>
-
-  <mat-card class="stat-card orange">
-    <div class="card-header">
-      <span class="material-icons">person</span>
-      <span>Tenants</span>
+      <div class="details">
+        <h3>Active Members</h3>
+        <h1>{{summary?.activeMembers}}</h1>
+      </div>
     </div>
 
-    <div class="value">
-      {{ summary.tenants }}
-    </div>
-  </mat-card>
+    <div class="card meetings">
+      <div class="icon">
+        <mat-icon>event</mat-icon>
+      </div>
 
-  <mat-card class="stat-card teal">
-    <div class="card-header">
-      <span class="material-icons">verified</span>
-      <span>Active Members</span>
-    </div>
-
-    <div class="value">
-      {{ summary.activeMembers }}
-    </div>
-  </mat-card>
-
-  <mat-card class="stat-card red">
-    <div class="card-header">
-      <span class="material-icons">block</span>
-      <span>Inactive Members</span>
+      <div class="details">
+        <h3>Meetings</h3>
+        <h1>{{summary?.totalMeetings}}</h1>
+      </div>
     </div>
 
-    <div class="value">
-      {{ summary.inactiveMembers }}
-    </div>
-  </mat-card>
+    <div class="card documents">
+      <div class="icon">
+        <mat-icon>description</mat-icon>
+      </div>
 
-  <mat-card class="stat-card purple">
-    <div class="card-header">
-      <span class="material-icons">apartment</span>
-      <span>Total Flats</span>
-    </div>
-
-    <div class="value">
-      {{ summary.totalFlats }}
-    </div>
-  </mat-card>
-
-  <mat-card class="stat-card indigo">
-    <div class="card-header">
-      <span class="material-icons">meeting_room</span>
-      <span>Occupied</span>
+      <div class="details">
+        <h3>Documents</h3>
+        <h1>{{summary?.totalDocuments}}</h1>
+      </div>
     </div>
 
-    <div class="value">
-      {{ summary.occupiedFlats }}
-    </div>
-  </mat-card>
+    <div class="card notices">
+      <div class="icon">
+        <mat-icon>campaign</mat-icon>
+      </div>
 
-  <mat-card class="stat-card cyan">
-    <div class="card-header">
-      <span class="material-icons">door_front</span>
-      <span>Vacant</span>
+      <div class="details">
+        <h3>Notices</h3>
+        <h1>{{summary?.totalNotices}}</h1>
+      </div>
     </div>
 
-    <div class="value">
-      {{ summary.vacantFlats }}
+    <div class="card yes">
+      <div class="icon">
+        <mat-icon>check_circle</mat-icon>
+      </div>
+
+      <div class="details">
+        <h3>Consent Yes</h3>
+        <h1>{{summary?.consentYes}}</h1>
+      </div>
     </div>
-  </mat-card>
+
+    <div class="card no">
+      <div class="icon">
+        <mat-icon>cancel</mat-icon>
+      </div>
+
+      <div class="details">
+        <h3>Consent No</h3>
+        <h1>{{summary?.consentNo}}</h1>
+      </div>
+    </div>
+
+    <div class="card pending">
+      <div class="icon">
+        <mat-icon>hourglass_empty</mat-icon>
+      </div>
+
+      <div class="details">
+        <h3>Pending</h3>
+        <h1>{{summary?.consentPending}}</h1>
+      </div>
+    </div>
+
+    <div class="card progress">
+      <div class="icon">
+        <mat-icon>trending_up</mat-icon>
+      </div>
+
+      <div class="details">
+        <h3>Consent Progress</h3>
+        <h1>{{summary?.consentPercentage}}%</h1>
+      </div>
+    </div>
+
+  </div>
+<div class="progress-card">
+
+  <h2>Consent Progress</h2>
+
+  <div class="progress-bar">
+
+    <div
+      class="progress-fill"
+      [style.width.%]="summary?.consentPercentage">
+    </div>
+
+  </div>
+
+  <div class="progress-value">
+
+    {{summary?.consentPercentage}}%
+
+  </div>
+
+  <div class="consent-summary">
+
+    <div class="yes">
+      ✔ Yes
+      <strong>{{summary?.consentYes}}</strong>
+    </div>
+
+    <div class="no">
+      ✖ No
+      <strong>{{summary?.consentNo}}</strong>
+    </div>
+
+    <div class="pending">
+      ⏳ Pending
+      <strong>{{summary?.consentPending}}</strong>
+    </div>
+
+  </div>
+
+  <p class="progress-text">
+    {{summary?.consentYes}} of
+    {{summary?.totalMembers}}
+    members have submitted consent.
+  </p>
 
 </div>
+</div>
+<div class="chart-card">
 
-}
+
+
+  <h2>Consent Status</h2>
+<canvas
+  baseChart
+  [data]="barChartData"
+  [options]="barChartOptions"
+  [type]="barChartType">
+</canvas>
+
+
+</div>

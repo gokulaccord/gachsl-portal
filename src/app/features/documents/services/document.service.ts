@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DocumentLookup } from '../../../core/models/document-lookup.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,12 @@ download(id: number) {
       responseType: 'blob'
     }
   );
+}
+getLookup(): Observable<DocumentLookup[]> {
+
+  return this.http.get<DocumentLookup[]>(
+    `${this.apiUrl}/lookup`
+  );
+
 }
 }
